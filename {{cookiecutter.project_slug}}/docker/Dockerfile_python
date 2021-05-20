@@ -1,0 +1,9 @@
+FROM python:3.8.10
+
+WORKDIR /home/{{cookiecutter.project_slug}}
+
+RUN pip install --ignore-installed poetry
+COPY poetry.lock pyproject.toml ./
+RUN POETRY_VIRTUALENVS_CREATE=false poetry install --no-interaction --no-ansi
+
+EXPOSE 8000
