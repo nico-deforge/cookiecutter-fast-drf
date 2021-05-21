@@ -11,14 +11,11 @@ extend-ignore =
     # https://www.flake8rules.com/rules/W503.html
     W503
 extend-exclude =
-    _debug
-    debug.py
-    .circleci,
-    .ebextensions,
     .github,
     .mypy_cache,
     .pytest_cache,
     .venv,
+    .env
     docker-compose-envs,
     k8s,
     **/migrations,
