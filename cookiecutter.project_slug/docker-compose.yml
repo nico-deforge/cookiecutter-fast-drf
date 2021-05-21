@@ -4,9 +4,6 @@ services:
 
   postgres:
     container_name: postgres
-    environment:
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_DB={{cookiecutter.project_slug}}
     build:
       context: ./docker
       dockerfile: Dockerfile_postgres
@@ -17,21 +14,18 @@ services:
         source: postgres
         target: /var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=cookiecutter
     networks:
       - postgres
     restart: always
 
   pgadmin:
     container_name: pgadmin4
-    environment:
-      - PGADMIN_EMAIL=pgadmin4@pgadmin.org
-      - PGADMIN_PASSWORD=admin
     image: dpage/pgadmin4:latest
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
     volumes:
       - type: volume
         source: pgadmin
@@ -50,7 +44,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile_python
     volumes:
-      - ".:/home/{{cookiecutter.project_slug}}"
+      - ".:/home/cookiecutter.project_slug"
       - "./.venv"
     tty: true
     ports:
