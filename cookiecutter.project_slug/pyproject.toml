@@ -8,13 +8,14 @@ authors = ["{{cookiecutter.author_name}} <{{cookiecutter.email}}>"]
 python = "^3.8"
 Django = "3.2"
 djangorestframework = "3.12.4"
+djangorestframework-stubs = "1.4.0"
+django-stubs = "1.8.0"
 django-cors-headers = "3.7.0"
 django-storages = "1.11.1"
 djoser = "2.1.0"
 drf-yasg = "1.20.0"
 factory-boy = "3.2.0"
 psycopg2 = "2.8.6"
-
 
 [tool.poetry.dev-dependencies]
 black = "21.5b1"
