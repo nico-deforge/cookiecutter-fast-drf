@@ -1,11 +1,11 @@
 {
-    "project_name": "Intranet back",
+    "project_name": "cookiecutter-fast-drf",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
     "project_version": "0.1.0",
-    "description": "API Back-end of the TNF Alumni intranet",
+    "description": "The Fast Django Rest Framework cookicutter",
     "author_name": "Nico Deforge",
     "email": "me@nicolasdeforge.io",
     "_copy_without_render": [
-      "{{cookiecutter.project_slug}}/core/*templates"
+      "{{cookiecutter.project_slug}}/core/templates/*.html"
     ]
 }
