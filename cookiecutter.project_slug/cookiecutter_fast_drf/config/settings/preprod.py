@@ -84,6 +84,17 @@ SIMPLE_JWT = {
 
 STATIC_ROOT = secret.STATIC_ROOT
 
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = secret.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = secret.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = "app-staging-bucket"
+AWS_S3_REGION_NAME = secret.AWS_S3_REGION_NAME
+AWS_S3_ENDPOINT_URL = secret.AWS_S3_ENDPOINT_URL
+AWS_S3_ADDRESSING_STYLE = "virtual"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
 # Session settings
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True  # Avoid javascript hack
