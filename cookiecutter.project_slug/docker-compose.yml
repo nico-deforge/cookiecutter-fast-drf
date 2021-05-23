@@ -44,7 +44,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile_python
     volumes:
-      - "./src:/home/cookiecutter.project_slug"
+      - ".:/home/cookiecutter.project_slug"
       - "./.venv"
     tty: true
     ports:
