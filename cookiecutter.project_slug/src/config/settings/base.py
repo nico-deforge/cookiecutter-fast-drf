@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "cookiecutter_fast_drf.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cookiecutter_fast_drf.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 AUTH_USER_MODEL = "core.User"
 

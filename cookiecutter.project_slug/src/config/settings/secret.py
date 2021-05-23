@@ -1,4 +1,4 @@
-SECRET_KEY = ""
+SECRET_KEY = "To define"
 
 DB_NAME = ""
 
