@@ -15,7 +15,7 @@ services:
         target: /var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=test
-      - POSTGRES_DB=cookiecutter
+      - POSTGRES_DB={{cookiecutter.project_slug}}
     networks:
       - postgres
     restart: always
@@ -44,7 +44,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile_python
     volumes:
-      - ".:/home/cookiecutter.project_slug"
+      - ".:/home/{{cookiecutter.project_slug}}"
       - "./.venv"
     tty: true
     ports:

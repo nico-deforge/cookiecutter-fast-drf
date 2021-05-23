@@ -1,6 +1,6 @@
 SECRET_KEY = "To define"
 
-DB_NAME = "cookiecutter"
+DB_NAME = "{{cookiecutter.project_slug}}"
 
 DB_USER_DEV = "postgres"
 DB_PASSWORD_DEV = "test"
@@ -16,7 +16,7 @@ DB_PASSWORD_PROD = ""
 
 STATIC_ROOT = ""
 
-DEFAULT_FROM_EMAIL = ""
+DEFAULT_FROM_EMAIL = "me@nicolasdeforge.io"
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 

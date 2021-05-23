@@ -27,7 +27,7 @@ SECRET_KEY = secret.SECRET_KEY
 # Application definition
 
 INSTALLED_APPS = [
-    "cookiecutter_fast_drf.core.apps.CoreConfig",
+    "{{cookiecutter.project_slug}}.core.apps.CoreConfig",
     "rest_framework",
     "corsheaders",
     "drf_yasg",
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "cookiecutter_fast_drf.config.urls"
+ROOT_URLCONF = "{{cookiecutter.project_slug}}.config.urls"
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cookiecutter_fast_drf.config.wsgi.application"
+WSGI_APPLICATION = "{{cookiecutter.project_slug}}.config.wsgi.application"
 
 AUTH_USER_MODEL = "core.User"
 

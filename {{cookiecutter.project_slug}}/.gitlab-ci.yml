@@ -32,7 +32,7 @@ pre-production:
     - chmod 700 ~/.ssh
     - ssh-keyscan -t rsa <preprod_url> >> ~/.ssh/known_hosts
   script:
-  - ssh <prod_user>@<preprod_url> "export DJANGO_SETTINGS_MODULE=cookiecutter_fast_drf.settings.preprod && cd /opt/cookiecutter_fast_drf && git fetch && git checkout $CI_COMMIT_REF_NAME && git pull origin $CI_COMMIT_REF_NAME  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py buildwatson && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
+  - ssh <prod_user>@<preprod_url> "export DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.settings.preprod && cd /opt/{{cookiecutter.project_slug}} && git fetch && git checkout $CI_COMMIT_REF_NAME && git pull origin $CI_COMMIT_REF_NAME  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
 
 stages:
   - deploy
@@ -68,4 +68,4 @@ production:
     - chmod 700 ~/.ssh
     - ssh-keyscan -t rsa <prod_ip> >> ~/.ssh/known_hosts
   script:
-  - ssh <prod_user>@<prod_ip> "export DJANGO_SETTINGS_MODULE=cookiecutter_fast_drf.settings.prod && cd /opt/cookiecutter_fast_drf && git checkout master && git pull origin master  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py buildwatson && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
+  - ssh <prod_user>@<prod_ip> "export DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.settings.prod && cd /opt/{{cookiecutter.project_slug}} && git checkout master && git pull origin master  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
