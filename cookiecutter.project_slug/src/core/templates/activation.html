@@ -1,0 +1,36 @@
+{% load i18n %}
+
+{% block subject %}
+    Activation de ton compte sur {{ site_name }}
+{% endblock subject %}
+
+{% block text_body %}
+bonjour {{ user.first_name}}, 
+
+Bienvenue sur {{ site_name }} !
+
+Voici le lien pour activer ton compte :
+https://{{ domain }}/{{ url|safe }}
+
+Nous sommes ravis de te compter parmi nous.
+
+À bientôt,
+
+L'équipe {{ site_name }}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>Bonjour {{ user.first_name }},</p>
+
+<p>Bienvenue sur {{ site_name }} !</p>
+
+<p>Voici le lien pour activer ton compte :</p>
+<p><a href="https://{{ domain }}/{{ url|safe }}">https://{{ domain }}/{{ url|safe }}</a></p>
+
+<p>Nous sommes ravis de te compter parmi nous.</p>
+
+<p>À bientôt,</p>
+
+<p>L'équipe {{ site_name }}</p>
+
+{% endblock html_body %}
