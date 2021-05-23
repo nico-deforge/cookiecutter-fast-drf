@@ -1,0 +1,71 @@
+stages:
+  - deploy
+pre-production:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^release/'
+      when: always
+  stage: deploy
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    ## We're using tr to fix line endings which makes ed25519 keys work
+    ## without extra base64 encoding.
+    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    ##
+    - echo "$SSH_PRIVATE_KEY_PRE" | tr -d '\r' | ssh-add -
+
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa <preprod_url> >> ~/.ssh/known_hosts
+  script:
+  - ssh <prod_user>@<preprod_url> "export DJANGO_SETTINGS_MODULE=cookiecutter_fast_drf.settings.preprod && cd /opt/cookiecutter_fast_drf && git fetch && git checkout $CI_COMMIT_REF_NAME && git pull origin $CI_COMMIT_REF_NAME  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py buildwatson && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
+
+stages:
+  - deploy
+production:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^master/'
+      when: always
+  stage: deploy
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    ## We're using tr to fix line endings which makes ed25519 keys work
+    ## without extra base64 encoding.
+    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    ##
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa <prod_ip> >> ~/.ssh/known_hosts
+  script:
+  - ssh <prod_user>@<prod_ip> "export DJANGO_SETTINGS_MODULE=cookiecutter_fast_drf.settings.prod && cd /opt/cookiecutter_fast_drf && git checkout master && git pull origin master  && poetry install && cd src && poetry run python manage.py migrate && poetry run python manage.py buildwatson && poetry run python manage.py collectstatic --noinput && sudo supervisorctl restart <gunicorn_process_name> && exit"
