@@ -16,8 +16,6 @@ class UUIDmodel(models.Model):
 
 
 class User(AbstractUser, UUIDmodel):
-    USERNAME_FIELD = "email"
-
     username_validator = UnicodeUsernameValidator()
 
     email = models.EmailField(_("email address"), unique=True, null=False, blank=False)
@@ -34,3 +32,7 @@ class User(AbstractUser, UUIDmodel):
         blank=True,
         default="",
     )
+
+    USERNAME_FIELD = "email"
+    EMAIL_FIELD = "email"
+    REQUIRED_FIELDS = []

@@ -1,9 +1,9 @@
 SECRET_KEY = "To define"
 
-DB_NAME = ""
+DB_NAME = "cookiecutter"
 
-DB_USER_DEV = ""
-DB_PASSWORD_DEV = ""
+DB_USER_DEV = "postgres"
+DB_PASSWORD_DEV = "test"
 
 DB_USER_PREPROD = ""
 DB_PASSWORD_PREPROD = ""
