@@ -4,6 +4,5 @@
     "project_version": "0.1.0",
     "description": "The Fast Django Rest Framework cookicutter",
     "author_name": "Nico Deforge",
-    "domain_name": "nicolasdeforge.io",
     "email": "me@nicolasdeforge.io"
   }
