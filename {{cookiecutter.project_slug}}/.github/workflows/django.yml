@@ -27,6 +27,8 @@ jobs:
             - 5432:5432
           # Set health checks to wait until postgres has started
           options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    {% raw %}
     
     steps:
     - uses: actions/checkout@v2
@@ -58,6 +60,8 @@ jobs:
       if: steps.cache-poetry.outputs.cache-hit != 'true'
       run: |
         poetry install
+    
+    {% endraw %}
       
     - name: Setup Environment
       run: |
