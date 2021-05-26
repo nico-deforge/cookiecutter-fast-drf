@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "{{cookiecutter.project_slug}}"
-version = "{{cookiecutter.project_version}}"
-description = "{{cookiecutter.description}}"
-authors = ["{{cookiecutter.author_name}} <{{cookiecutter.email}}>"]
+name = "add_lib"
+version = "0.1.0"
+description = "The Fast Django Rest Framework cookicutter"
+authors = ["Nico Deforge <me@nicolasdeforge.io>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -10,6 +10,7 @@ Django = "3.2"
 djangorestframework = "3.12.4"
 djangorestframework-stubs = "1.4.0"
 django-cleanup = "5.2.0"
+django-filter = "2.4.0"
 django-stubs = "1.8.0"
 django-cors-headers = "3.7.0"
 django-storages = "1.11.1"
