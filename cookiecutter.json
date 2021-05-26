@@ -5,6 +5,7 @@
     "description": "The Fast Django Rest Framework cookicutter",
     "author_name": "Nico Deforge",
     "email": "me@nicolasdeforge.io",
+    "git_username": "nico-deforge",
     "_copy_without_render": [
       "{{cookiecutter.project_slug}}/core/templates/*.html"
     ]

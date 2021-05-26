@@ -1,0 +1,17 @@
+# dependabot.yml file
+
+version: 2
+updates:
+  # Keep poetry dependencies up to date
+  - package-ecosystem: "poetry"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "poetry dependencies"
+    target-branch: "develop"
+    assignees:
+      - "{{cookiecutter.git_username}}"
+    commit-message:
+      # Prefix all commit messages with "poetry"
+      prefix: "poetry"
