@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "easy_thumbnails",
     "django_filters",
+    "import_export",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -143,3 +144,6 @@ SWAGGER_SETTINGS = {
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# Define django import export settings
+IMPORT_EXPORT_USE_TRANSACTIONS = True
