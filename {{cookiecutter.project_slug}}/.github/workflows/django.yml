@@ -26,11 +26,7 @@ jobs:
           ports:
             - 5432:5432
           # Set health checks to wait until postgres has started
-          options: >-
-            --health-cmd pg_isready
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
+          options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     
     steps:
     - uses: actions/checkout@v2
@@ -39,13 +35,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-        
-    - name: Install locale
-      run: |
-        sudo apt-get install language-pack-fr-base
-        sudo locale-gen fr_FR.UTF-8
-        sudo localectl set-locale LANG=fr_FR.utf8 LC_TIME=fr_FR.UTF-8
-
 
     - name: Upgrade pip
       run: |
@@ -72,8 +61,8 @@ jobs:
       
     - name: Setup Environment
       run: |
-        cp ./.github/workflows/secret.py intranet_back/config/settings
-        export DJANGO_SETTINGS_MODULE=intranet_back.config.settings.dev
+        cp ./.github/workflows/secret.py {{cookiecutter.project_slug}}/config/settings
+        echo "DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.config.settings.test" >> $GITHUB_ENV
 
     - name: Verify code has been formatted with Black
       run: poetry run black --check .
@@ -91,4 +80,4 @@ jobs:
       run: poetry run python manage.py makemigrations --check
 
     - name: Run Tests
-      run: poetry run pytest --create-db
+      run: poetry run pytest .
