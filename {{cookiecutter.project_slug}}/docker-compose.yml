@@ -45,7 +45,6 @@ services:
       dockerfile: ./docker/Dockerfile_python
     volumes:
       - ".:/home/{{cookiecutter.project_slug}}"
-      - "./.venv"
     tty: true
     ports:
       - "8000:8000"
