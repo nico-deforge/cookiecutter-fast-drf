@@ -49,7 +49,7 @@ DATABASES = {
 DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "account/password/new/{uid}/{token}",
     "ACTIVATION_URL": "account/activate/{uid}/{token}",
-    "SEND_ACTIVATION_EMAIL": True,
+    "SEND_ACTIVATION_EMAIL": False,
     "SEND_CONFIRMATION_EMAIL": False,
     "USER_CREATE_PASSWORD_RETYPE": True,
     "SET_PASSWORD_RETYPE": True,
@@ -57,8 +57,8 @@ DJOSER = {
     "TOKEN_MODEL": None,
     "SERIALIZERS": {},
     "EMAIL": {
-        "activation": "core.email.CustomActivationEmail",
-        "password_reset": "core.email.CustomPasswordResetEmail",
+        "activation": "{{cookiecutter.project_slug}}.core.email.CustomActivationEmail",
+        "password_reset": "{{cookiecutter.project_slug}}.core.email.CustomPasswordResetEmail",
     },
 }
 

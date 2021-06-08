@@ -57,8 +57,8 @@ DJOSER = {
     "TOKEN_MODEL": None,
     "SERIALIZERS": {},
     "EMAIL": {
-        "activation": "core.email.CustomActivationEmail",
-        "password_reset": "core.email.CustomPasswordResetEmail",
+        "activation": "{{cookiecutter.project_slug}}.core.email.CustomActivationEmail",
+        "password_reset": "{{cookiecutter.project_slug}}.core.email.CustomPasswordResetEmail",
     },
 }
 
