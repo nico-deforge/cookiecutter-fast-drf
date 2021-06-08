@@ -1,8 +1,6 @@
 import factory
 
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
+from {{cookiecutter.project_slug}}.core.models import User
 
 
 class UserFactory(factory.django.DjangoModelFactory):
