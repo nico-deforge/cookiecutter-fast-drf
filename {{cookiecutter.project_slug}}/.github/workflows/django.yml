@@ -2,7 +2,7 @@ name: Django CI
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
   pull_request:
     branches:
       - '*'
@@ -28,8 +28,23 @@ jobs:
           # Set health checks to wait until postgres has started
           options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    {% raw %}
+    env:
+      DJANGO_SETTINGS_MODULE: {{cookiecutter.project_slug}}.config.settings
+      SECRET_KEY: XXXXXXXX
+      DEBUG: True
+      ENVIRONMENT: test
+      DATABASE_URL: psql://postgres:test@localhost:5432/{{cookiecutter.project_slug}}
+      STATIC_ROOT: ""
+      DEFAULT_FROM_EMAIL: me@nicolasdeforge.io
+      EMAIL_HOST_USER: ""
+      EMAIL_HOST_PASSWORD: ""
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+      AWS_S3_REGION_NAME: ""
+      AWS_S3_ENDPOINT_URL: ""
     
+    {% raw %}
+
     steps:
     - uses: actions/checkout@v2
 
@@ -60,13 +75,12 @@ jobs:
       if: steps.cache-poetry.outputs.cache-hit != 'true'
       run: |
         poetry install
-    
-    {% endraw %}
-      
+
+     {% endraw %}   
+
     - name: Setup Environment
       run: |
-        cp ./.github/workflows/secret.py {{cookiecutter.project_slug}}/config/settings
-        echo "DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.config.settings.test" >> $GITHUB_ENV
+        echo "DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.config.settings" >> $GITHUB_ENV
 
     - name: Verify code has been formatted with Black
       run: poetry run black --check .

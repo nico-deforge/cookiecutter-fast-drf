@@ -6,10 +6,10 @@ updates:
   - package-ecosystem: "poetry"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
     labels:
       - "poetry dependencies"
-    target-branch: "develop"
+    target-branch: "main"
     assignees:
       - "{{cookiecutter.git_username}}"
     commit-message:
