@@ -6,13 +6,13 @@ if [ -z "$@" ]
 then
   echo "checking for everything"
   black ./tests/ &&
-  black ./intranet_back/ &&
+  black ./{{cookiecutter_slug}}/ &&
   flake8 ./tests/ &&
-  flake8 ./intranet_back/ &&
+  flake8 ./{{cookiecutter_slug}}/ &&
   isort ./tests/ &&
-  isort ./intranet_back/ &&
+  isort ./{{cookiecutter_slug}}/ &&
   mypy ./tests/ &&
-  mypy ./intranet_back/
+  mypy ./{{cookiecutter_slug}}/
   if [ $? -eq 0 ]; then
     echo "${GREEN}all good ! ready to commit !${NC}"
     pytest ./tests/
@@ -24,13 +24,13 @@ else
   for app in "$@"
   do
   black ./tests/test_$app &&
-  black ./intranet_back/$app &&
+  black ./{{cookiecutter_slug}}/$app &&
   flake8 ./tests/test_$app &&
-  flake8 ./intranet_back/$app &&
+  flake8 ./{{cookiecutter_slug}}/$app &&
   isort ./tests/$app  &&
-  isort ./intranet_back/$app  &&
+  isort ./{{cookiecutter_slug}}/$app  &&
   mypy ./tests/$app  &&
-  mypy ./intranet_back/$app  &&
+  mypy ./{{cookiecutter_slug}}/$app  &&
   if [ $? -eq 0 ]; then
     echo "${GREEN}all good ! ready to commit !${NC}"
     pytest ./tests/test_$app
