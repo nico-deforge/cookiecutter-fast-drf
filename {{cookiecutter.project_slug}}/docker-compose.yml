@@ -43,6 +43,8 @@ services:
     build:
       context: ./
       dockerfile: ./docker/Dockerfile_python
+    env_file:
+      - .env
     volumes:
       - ".:/home/{{cookiecutter.project_slug}}"
     tty: true
