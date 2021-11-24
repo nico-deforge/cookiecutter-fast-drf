@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-import debug_toolbar
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path
@@ -40,19 +39,21 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
+
     urlpatterns += [
         re_path(
-            r"^swagger-administration-104f55(?P<format>\.json|\.yaml)$",
+            r"^swagger-administration(?P<format>\.json|\.yaml)$",
             schema_view.without_ui(cache_timeout=0),
             name="schema-json",
         ),
         re_path(
-            r"^swagger-administration-104f55/$",
+            r"^swagger-administration/$",
             schema_view.with_ui("swagger", cache_timeout=0),
             name="schema-swagger-ui",
         ),
         re_path(
-            r"^redoc-administration-104f55/$",
+            r"^redoc-administration/$",
             schema_view.with_ui("redoc", cache_timeout=0),
             name="schema-redoc",
         ),
