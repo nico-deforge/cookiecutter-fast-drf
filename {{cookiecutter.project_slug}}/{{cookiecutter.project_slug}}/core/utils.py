@@ -1,6 +1,6 @@
 from rest_framework.request import Request
 
-from {{cookiecutter.project_slug}}.core.models import User
+from .models import User
 
 
 class AuthenticatedRequest(Request):
