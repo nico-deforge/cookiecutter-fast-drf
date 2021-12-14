@@ -3,7 +3,7 @@
 version: 2
 updates:
   # Keep poetry dependencies up to date
-  - package-ecosystem: "poetry"
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "daily"
