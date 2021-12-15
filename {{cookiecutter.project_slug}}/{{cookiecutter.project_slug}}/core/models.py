@@ -19,6 +19,9 @@ class UUIDmodel(models.Model):
     class Meta:
         abstract = True
         ordering = ["-date_created"]
+    
+    def __str__(self):
+        return str(self.id)
 
 
 class CustomUserManager(UserManager):
