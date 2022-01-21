@@ -303,7 +303,10 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Basic": {"type": "basic"},
         "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"},
-    }
+    },
+    "USE_SESSION_AUTH": False,
+    "REFETCH_SCHEMA_WITH_AUTH": True,
+    "REFETCH_SCHEMA_ON_LOGOUT": True,
 }
 
 # Define IPS Adresses for Django debug toolbar
